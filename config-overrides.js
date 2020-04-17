@@ -1,4 +1,4 @@
-const { override,fixBabelImports ,addDecoratorsLegacy  } =require('customize-cra')
+const { override,fixBabelImports ,addLessLoader  } =require('customize-cra')
 
 
 module.exports=override(
@@ -7,5 +7,7 @@ module.exports=override(
         libraryDirectory: 'es',
         style: true,
         }),
-    addDecoratorsLegacy()
+        addLessLoader({
+            javascriptEnabled:true
+        })
 )
