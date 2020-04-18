@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 
 import App from './App'
 
-import { mainRouter} from './router'
+import { mainRoutes} from './router'
 
 import { HashRouter as Router, Route,Switch,Redirect } from 'react-router-dom'
 
@@ -15,7 +15,7 @@ render(
                 return <App {...routeProps}/>
             }}/>
             {
-                mainRouter.map((item)=>{
+                mainRoutes.map((item)=>{
                     return <Route key={item.pathname} path={item.pathname}  component={item.component} />
                 })
             }

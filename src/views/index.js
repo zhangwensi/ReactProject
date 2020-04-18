@@ -4,7 +4,8 @@
 // import NotFond from './NotFond'
 // import Edit from './Aritcle/Edit'
 import Loadable  from 'react-loadable'
-import Loading from '../components/loading'
+import {Loading} from '../components/index'
+
 
 const Aritcle = Loadable({
     loader:()=> import('./Aritcle'),

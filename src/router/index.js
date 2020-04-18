@@ -9,7 +9,7 @@ import {
 
 
 // 与App同级别
-export const mainRouter = [{
+export const mainRoutes = [{
         pathname: '/404',
         component: NotFond
     },{
@@ -19,15 +19,19 @@ export const mainRouter = [{
 ]
 
 // 内置路由
-export const adminRouter = [
+export const adminRoutes = [
     {
         pathname:'/admin/aritcle',
         component:Aritcle,
-        exact:true
+        exact:true,
+        title: '文章文章',
+        isNav: true
     },
     {
         pathname:'/admin/dashbroad',
-        component:Dashbroad
+        component:Dashbroad,
+        title: '仪表盘',
+        isNav: true
     },
     {
         pathname:'/admin/aritcle/edit/:id',
