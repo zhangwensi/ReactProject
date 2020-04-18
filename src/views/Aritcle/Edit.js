@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
+import { Table } from 'antd'
+
 export default class Edit extends Component {
     render() {
         return (
-            <div>
-                文章编辑
-            </div>
+            <Table pagination={{total:5}} />
         )
     }
 }

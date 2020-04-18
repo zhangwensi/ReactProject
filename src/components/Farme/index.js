@@ -12,9 +12,9 @@ const { Header, Content, Sider } = Layout
 @withRouter
 
 class Farme extends Component {
-    routeJump = ({key})=>{
-            // 路由跳转
-            this.props.history.push(key)
+    routeJump = ({ key }) => {
+        // 路由跳转
+        this.props.history.push(key)
     }
     render() {
         return (
@@ -30,12 +30,12 @@ class Farme extends Component {
                             <Menu
                                 mode="inline"
                                 selectedKeys={[this.props.location.pathname]}
-                                onClick = {this.routeJump}
+                                onClick={this.routeJump}
                                 style={{ height: '100%', borderRight: 0 }}
                             >
                                 {
-                                    this.props.menu.map((item)=>{
-                                        return(
+                                    this.props.menu.map((item) => {
+                                        return (
                                             <Menu.Item key={item.pathname}>
                                                 {item.title}
                                             </Menu.Item>
@@ -51,9 +51,9 @@ class Farme extends Component {
                                     padding: 24,
                                     margin: 0,
                                     minHeight: 280,
-                                    backgroundColor:'#fff'
+                                    backgroundColor: '#fff'
                                 }}
-                                >
+                            >
                                 {this.props.children}
                             </Content>
                         </Layout>
@@ -64,4 +64,4 @@ class Farme extends Component {
     }
 }
 
-export default  Farme
+export default Farme

@@ -10,33 +10,33 @@ import {
 
 // 与App同级别
 export const mainRoutes = [{
-        pathname: '/404',
-        component: NotFond
-    },{
-        pathname: '/login',
-        component: Login
-    }
+    pathname: '/404',
+    component: NotFond
+}, {
+    pathname: '/login',
+    component: Login
+}
 ]
 
 // 内置路由
 export const adminRoutes = [
     {
-        pathname:'/admin/aritcle',
-        component:Aritcle,
-        exact:true,
+        pathname: '/admin/aritcle',
+        component: Aritcle,
+        exact: true,
         title: '文章文章',
         isNav: true,
         // icon:'<CustomerServiceOutlined/>'
     },
     {
-        pathname:'/admin/dashbroad',
-        component:Dashbroad,
+        pathname: '/admin/dashbroad',
+        component: Dashbroad,
         title: '仪表盘',
         isNav: true,
         // icon:'DashboardOutlined'  新版本的antd去除了Icon标签
     },
     {
-        pathname:'/admin/aritcle/edit/:id',
-        component:Edit,
+        pathname: '/admin/aritcle/edit/:id',
+        component: Edit,
     }
 ]
