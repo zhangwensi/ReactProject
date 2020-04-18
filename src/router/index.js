@@ -25,13 +25,15 @@ export const adminRoutes = [
         component:Aritcle,
         exact:true,
         title: '文章文章',
-        isNav: true
+        isNav: true,
+        // icon:'<CustomerServiceOutlined/>'
     },
     {
         pathname:'/admin/dashbroad',
         component:Dashbroad,
         title: '仪表盘',
-        isNav: true
+        isNav: true,
+        // icon:'DashboardOutlined'  新版本的antd去除了Icon标签
     },
     {
         pathname:'/admin/aritcle/edit/:id',

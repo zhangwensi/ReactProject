@@ -6,6 +6,8 @@ import App from './App'
 
 import { mainRoutes} from './router'
 
+import './common.less'
+
 import { HashRouter as Router, Route,Switch,Redirect } from 'react-router-dom'
 
 render(

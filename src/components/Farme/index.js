@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 
-import { Layout, Menu, Breadcrumb } from 'antd'
+import { Layout, Menu } from 'antd'
 
+import { withRouter } from 'react-router-dom'
 import logo from './logo.png'
 
 import './Farme.less'
 
 const { Header, Content, Sider } = Layout
 
+@withRouter
 
-export default class Farme extends Component {
+class Farme extends Component {
+    routeJump = ({key})=>{
+            // 路由跳转
+            this.props.history.push(key)
+    }
     render() {
         return (
             <>
@@ -23,27 +29,24 @@ export default class Farme extends Component {
                         <Sider width={200} className="site-layout-background">
                             <Menu
                                 mode="inline"
-                                defaultSelectedKeys={['1']}
-                                defaultOpenKeys={['sub1']}
+                                selectedKeys={[this.props.location.pathname]}
+                                onClick = {this.routeJump}
                                 style={{ height: '100%', borderRight: 0 }}
                             >
                                 {
                                     this.props.menu.map((item)=>{
                                         return(
-                                            <Menu.Item key={item.pathname}>{item.title}</Menu.Item>
+                                            <Menu.Item key={item.pathname}>
+                                                {item.title}
+                                            </Menu.Item>
                                         )
                                     })
                                 }
                             </Menu>
                         </Sider>
-                        <Layout style={{ padding: '0 24px 24px' }}>
-                            <Breadcrumb style={{ margin: '16px 0' }}>
-                                <Breadcrumb.Item>Home</Breadcrumb.Item>
-                                <Breadcrumb.Item>List</Breadcrumb.Item>
-                                <Breadcrumb.Item>App</Breadcrumb.Item>
-                            </Breadcrumb>
+                        <Layout style={{ padding: '16px' }}>
                             <Content
-                                className="site-layout-background"
+                                className="fm-site-layout-background"
                                 style={{
                                     padding: 24,
                                     margin: 0,
@@ -60,3 +63,5 @@ export default class Farme extends Component {
         )
     }
 }
+
+export default  Farme
