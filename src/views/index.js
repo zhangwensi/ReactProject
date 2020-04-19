@@ -1,10 +1,8 @@
-// import Aritcle  from './Aritcle'
-// import Dashbroad from './Dashborad'
-// import Login from './Login'
-// import NotFond from './NotFond'
-// import Edit from './Aritcle/Edit'
-import Loadable  from 'react-loadable'
-import {Loading} from '../components/index'
+import Loadable from  'react-loadable'
+
+import {
+  Loading
+} from '../components'
 
 
 const Aritcle = Loadable({
