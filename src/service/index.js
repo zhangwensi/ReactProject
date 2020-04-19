@@ -21,10 +21,12 @@ service.interceptors.request.use((config) => {
 service.interceptors.response.use((resp) => {
     if(resp.status === 200) {
         return resp.data
+    }else {
+        // 处理全局错误
     }
 })
 
 
-export const getList = () => {
-    return service.post('/api/aritcle/aritcleList')
+export const getList = (offset = 0, limited = 10) => {
+    return service.post('/api/aritcle/aritcleList',{offset,limited})
 }
