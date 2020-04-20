@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-import { Card, Button, Table, Tag, Radio } from 'antd'
+import { Card, Button, Table, Tag, Radio,Modal,Typography  } from 'antd'
+
+import {ExclamationCircleOutlined} from '@ant-design/icons'
 
 import moment from 'moment'
 
@@ -59,10 +61,10 @@ export default class Aritcle extends Component {
             title: '操作',
             dataIndex: 'action',
             key: 'action',
-            render: (record) => {
+            render: (text,record) => {
                 return <Radio.Group>
                     <Button type="primary" size="small">编辑</Button>
-                    <Button type="danger" size="small">删除</Button>
+                    <Button type="danger" size="small" onClick={this.onModal.bind(this,record)}>删除</Button>
                 </Radio.Group>
             }
         })
@@ -99,6 +101,16 @@ export default class Aritcle extends Component {
             limited: pageSize
         }, () => {
             this.getData()
+        })
+    }
+    onModal = (key) =>{
+        Modal.confirm({
+            icon:<ExclamationCircleOutlined />,
+            title:"你确定要删除么？",
+        content:<Typography >要删除<span style={{color:"red"}}>{key.title}</span>吗？</Typography>,
+            okText:'想删掉就麻溜点',
+            cancelText:'哎呀，手滑了'
+
         })
     }
     render() {
