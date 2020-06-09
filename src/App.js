@@ -1,34 +1,47 @@
 import React, { Component } from 'react'
 
+import { adminRoutes } from './routes'
+
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-import { adminRoutes } from './router'
+import { Frame } from './compoments/index'
 
-import { Farme } from './components'
+// 定义导航栏菜单数组
+const menuItems = adminRoutes.filter(item=>item.isNav===true)
+// 装饰器模式
+// const testHOC = (WrappedCompoment) =>{
+//     return class HOCComponent extends Component {
+//         render() {
+//             return (
+//                 <>
+//                     <WrappedCompoment/>
+//                     <div>这是装饰器模式内容</div>
+//                 </>
+//             )
+//         }
+//     }
+// }
 
-const menu = adminRoutes.filter(item => item.isNav === true)
+// @testHOC
 
 class App extends Component {
     render() {
         return (
             <>
-                <Farme menu={menu}>
+                <Frame menuItems={menuItems}>
                     <Switch>
                         {
-                            adminRoutes.map((route) => {
-                                return <Route
-                                    key={route.pathname}
-                                    path={route.pathname}
-                                    exact={route.exact}
-                                    render={(routeProps) => {
-                                        return <route.component {...routeProps} />
-                                    }} />
+                            adminRoutes.map(route=>{
+                                return <Route key={route.pathname} exact={route.exact} path={route.pathname} render={(routerPros)=>{
+                                    return <route.component {...routerPros}/>
+                                    }
+                                }/>
                             })
                         }
-                        <Redirect to={adminRoutes[0].pathname} from="/admin" />
-                        <Redirect to="/404" />
+                        <Redirect to={adminRoutes[0].pathname} from="/admin" exact />
+                        <Redirect to="/404"/>
                     </Switch>
-                </Farme>
+                </Frame>
             </>
         )
     }

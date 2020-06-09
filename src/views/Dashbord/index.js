@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Dashbroad extends Component {
+export default class Dashbord extends Component {
     render() {
         return (
             <div>
-                Dashbroad
+                图形列表
             </div>
         )
     }

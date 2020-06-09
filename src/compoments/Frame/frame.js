@@ -1,57 +1,52 @@
 import React, { Component } from 'react'
-
 import { Layout, Menu } from 'antd'
-
+import './frame.less'
+import * as Icon from '@ant-design/icons'
 import { withRouter } from 'react-router-dom'
-import logo from './logo.png'
-
-import './Farme.less'
 
 const { Header, Content, Sider } = Layout
 
 @withRouter
-
-class Farme extends Component {
-    routeJump = ({ key }) => {
-        // 路由跳转
+class Frame extends Component {
+    onMenuClick = ({ key }) => {
         this.props.history.push(key)
     }
     render() {
         return (
             <>
                 <Layout>
-                    <Header className="fm-header">
-                        <div className="fm-logo-wrapper" >
-                            <img src={logo} alt="logo" />
-                        </div>
+                    <Header className="header zk-header">
+                        <div className="logo" />
                     </Header>
-                    <Layout>
-                        <Sider width={200} className="site-layout-background">
+                    <Layout className="zk-section">
+                        <Sider width={200} style={{ background: '#fff' }}>
                             <Menu
                                 mode="inline"
-                                selectedKeys={[this.props.location.pathname]}
-                                onClick={this.routeJump}
+                                selectedKeys={this.props.location.pathname}
+                                onClick = {this.onMenuClick}
                                 style={{ height: '100%', borderRight: 0 }}
                             >
                                 {
-                                    this.props.menu.map((item) => {
-                                        return (
-                                            <Menu.Item key={item.pathname}>
-                                                {item.title}
-                                            </Menu.Item>
+                                    this.props.menuItems.map(item=>{
+                                    return <Menu.Item key={item.pathname}>{
+                                        React.createElement(
+                                          Icon[item.Icon],
+                                          {
+                                            style:{ fontSize: '16px', color: '#08c' }
+                                          }
                                         )
+                                      }{item.title}</Menu.Item>
                                     })
                                 }
                             </Menu>
                         </Sider>
-                        <Layout style={{ padding: '16px' }}>
+                        <Layout className="zk-content">
                             <Content
-                                className="fm-site-layout-background"
                                 style={{
+                                    background: '#fff',
                                     padding: 24,
                                     margin: 0,
                                     minHeight: 280,
-                                    backgroundColor: '#fff'
                                 }}
                             >
                                 {this.props.children}
@@ -64,4 +59,4 @@ class Farme extends Component {
     }
 }
 
-export default Farme
+export default Frame
