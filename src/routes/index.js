@@ -1,5 +1,5 @@
 //配置内外层路由
-import {Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit} from '../views/index'
+import {Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit,Infos} from '../views/index'
 
 // 配置与App同层级的外层路由
 export const mainRoutes = [
@@ -39,5 +39,12 @@ export const adminRoutes = [
         title:'设置',
         Icon:'SettingFilled',
         isNav:true
+    },
+    {
+        pathname:'/admin/infos',
+        component:Infos,
+        title:'信息中心',
+        Icon:'',
+        isNav:false
     }
 ]

@@ -5,7 +5,8 @@ import Settings from './Settings/index'
 import Notfound from './Notfond/index'
 import ArticleList from './Article/ArtList'
 import ArticleEdit from './Article/Edit.js'
+import Infos from './Infos/infos.js'
 
 export {
-    Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit
+    Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit,Infos
 }

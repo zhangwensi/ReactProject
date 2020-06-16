@@ -1,6 +1,6 @@
 import React, { Component,createRef } from 'react'
 
-import {Card,Row, Col } from 'antd'
+import {Card,Row, Col} from 'antd'
 
 import tabEcharts from 'echarts'
 
