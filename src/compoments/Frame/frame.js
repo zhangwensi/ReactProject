@@ -25,21 +25,24 @@ class Frame extends Component {
     DropdownClick = ({key}) => {
         this.props.history.push(key)
     }
-    menu = (
-        <Menu onClick={this.DropdownClick}>
-            <Menu.Item key="/admin/infos">
-                <Badge dot={Boolean(this.props.infosCount)}>
-                通知中心
-                </Badge>
-            </Menu.Item>
-            <Menu.Item key="/admin/Settings">
-                个人设置
-            </Menu.Item>
-            <Menu.Item key="/Login">
-                退出登录
-            </Menu.Item>
-        </Menu>
-    )
+    // 以下组件需该为方法调用  才能避免通知中心 在标记为已读 不会重新渲染问题
+    DropdownMenu = () =>{
+        return (
+            <Menu onClick={this.DropdownClick}>
+                <Menu.Item key="/admin/infos">
+                    <Badge dot={Boolean(this.props.infosCount)}> 
+                    通知中心
+                    </Badge>
+                </Menu.Item>
+                <Menu.Item key="/admin/Settings">
+                    个人设置
+                </Menu.Item>
+                <Menu.Item key="/Login">
+                    退出登录
+                </Menu.Item>
+            </Menu>
+        )
+    } 
     render() {
         return (
             <>
@@ -48,7 +51,7 @@ class Frame extends Component {
                         <div className="zk-logo" >
                             <img src={logo}  className="zk-img" alt="系统logo"/>
                         </div>
-                        <Dropdown overlay={this.menu}>
+                        <Dropdown overlay={this.DropdownMenu}>
                             <div>
                                 <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                                 <span>欢迎登录系统！</span>

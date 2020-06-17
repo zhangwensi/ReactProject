@@ -1,0 +1,4 @@
+export  default {
+    MARK_HAS_READ_BY_ID:'MARK_HAS_READ_BY_ID',
+    MARK_ALL_HAS_READ_BY_ID: 'MARK_ALL_HAS_READ_BY_ID'
+}
