@@ -8,6 +8,12 @@ const server = axios.create({
     timeout: 1000
   })
 
+// 创建登录实例
+const service1 = axios.create({
+    baseURL: isDev? 'http://rap2.taobao.org:38080/app/mock/251308':'',
+    timeout:100000
+})
+
 // 拦截器
 server.interceptors.request.use((config)=>{
     config.data = Object.assign({},config.data,{
@@ -35,3 +41,16 @@ export const getArtlist  = (offset,limited)=>{
 export const deletArticle = (id) => {
     return server.post(`api/aritcle/delet/${id}`)
 }
+
+// 求取后台信息中心接口获取未标记数据
+
+export const getInfoMarkTag = () => {
+    return server.post('api/selfInfo/markInfo')
+}
+
+// 用户登录接口
+
+export const userLogin = (userInfo) => {
+    return service1.post('api/userLogin',{username:userInfo.username,password:userInfo.password})
+}
+

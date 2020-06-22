@@ -6,24 +6,35 @@ import { DownOutlined } from '@ant-design/icons'
 import { withRouter } from 'react-router-dom'
 import logo from '../../assets/logo.jpg'
 import { connect } from 'react-redux'
+import {getInfoFromBack} from '../../actions/notification.js'
+import {logout} from '../../actions/login'
 
 const { Header, Content, Sider } = Layout
 
 // 初始化通知中心的数值
 const mapState = state => {
     return {
-        infosCount: state.InfosList.list.filter(item => item.hasRead === false ).length
+        infosCount: state.InfosList.list.filter(item => item.hasRead === false ).length,
+        displayname: state.user.displayname ,
+        avatar: state.user.avatar 
     }
 }
 
+@connect(mapState,{getInfoFromBack,logout})
 @withRouter
-@connect(mapState)
 class Frame extends Component {
+    componentDidMount () {
+        this.props.getInfoFromBack()
+    }
     onMenuClick = ({ key }) => {
         this.props.history.push(key)
     }
     DropdownClick = ({key}) => {
-        this.props.history.push(key)
+        if (key === '/Login') {
+            this.props.logout()
+        } else {
+            this.props.history.push(key)
+        }
     }
     // 以下组件需该为方法调用  才能避免通知中心 在标记为已读 不会重新渲染问题
     DropdownMenu = () =>{
@@ -34,7 +45,7 @@ class Frame extends Component {
                     通知中心
                     </Badge>
                 </Menu.Item>
-                <Menu.Item key="/admin/Settings">
+                <Menu.Item key="/admin/selfSetting">
                     个人设置
                 </Menu.Item>
                 <Menu.Item key="/Login">
@@ -53,8 +64,8 @@ class Frame extends Component {
                         </div>
                         <Dropdown overlay={this.DropdownMenu}>
                             <div>
-                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                <span>欢迎登录系统！</span>
+                                <Avatar src={this.props.avatar} />
+                                <span>{this.props.displayname}欢迎您！</span>
                                 <Badge count={this.props.infosCount} offset={[10,-8]}><DownOutlined /></Badge>
                             </div>
                         </Dropdown>

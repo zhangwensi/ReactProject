@@ -90,6 +90,12 @@ export default class ArtList extends Component {
         getArtlist(this.state.offset,this.state.limited).then((resp)=>{
             const columnsKey = Object.keys(resp.data.list[0])
             const columns = this.columnsType(columnsKey)
+            /**
+             * // 为了预防异步请求(请求时组件已经销毁，只在setStae管理数据时会发生)未完成
+             *  切换Nav导航栏 报错问题如未加载完  则返回空 即什么也不做  这时切换导航栏则不会报错
+             *  考虑到setState可能didmount生命周期之后发生--!this.updater.isMounted(this)
+             */
+            if (!this.updater.isMounted(this)) return
             this.setState({
                 columns,
                 total: resp.data.total,
@@ -99,6 +105,7 @@ export default class ArtList extends Component {
         }).catch((err)=>{
 
         }).finally(()=>{
+            if (!this.updater.isMounted(this)) return
             this.setState({
                 isLoading: false
             })

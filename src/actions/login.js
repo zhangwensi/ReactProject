@@ -20,7 +20,7 @@ const loginSuccess =(userReqInfo) =>{
 const loginFaile = () => {
     window.localStorage.removeItem('authToken')
     window.sessionStorage.removeItem('authToken')
-    window.sessionStorage.removeItem('userInfo')  
+    window.localStorage.removeItem('userInfo')  
     window.sessionStorage.removeItem('userInfo') 
     return {
         type: actionTypes.LOGIN_FAILE

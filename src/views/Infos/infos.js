@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card, Button, List, Avatar,Badge } from 'antd'
+import { Card, Button, List, Avatar,Badge,Spin  } from 'antd'
 
 import { connect } from 'react-redux'
 
@@ -8,9 +8,10 @@ import {markHasReadById,markAllHasReadById} from '../../actions/notification.js'
 
 // 读取state的值
 const mapState = state=> {
-    const  { list } = state.InfosList //结构
+    const  { list,isLoading } = state.InfosList //结构
     return {
-        list:list
+        list:list,
+        isLoading
     }
 }
 
@@ -18,8 +19,11 @@ const mapState = state=> {
 
 class infos extends Component {
     render() {
+        console.log(this.props.isLoading)
         return (
             <>
+            <Spin tip="Loading..." spinning={this.props.isLoading}>
+                
                 <Card title="信息中心" bordered={false} extra={<Button disabled={this.props.list.every(item =>item.hasRead=== true)}  onClick={this.props.markAllHasReadById}>标记为全部已读</Button>} ></Card>
                 <List
                     itemLayout="horizontal"
@@ -43,6 +47,7 @@ class infos extends Component {
                         </List.Item>
                     )}
                 />
+            </Spin>
             </>
         )
     }

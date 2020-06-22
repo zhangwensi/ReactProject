@@ -3,6 +3,7 @@ import actionTypes from '../actions/actionTypes.js'
 
 // 初始化信息中心的通知状态
 const initState = {
+    isLoading: false,
     list: [
         {
             id: 1,
@@ -28,6 +29,21 @@ const initState = {
 
 export default (state = initState, action) => {
     switch (action.type) {
+        case actionTypes.START_LOADING:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case actionTypes.FINSH_LOADING:
+            return {
+                ...state,
+                isLoading: false
+            }
+        case actionTypes.GET_INFOS_FROM_BACK:
+            return {
+                ...state,
+                list: action.payload.list
+            }
         case actionTypes.MARK_HAS_READ_BY_ID:
             //  找出传入的id对应数组  改变其hasRead的状态
             const newList = state.list.map(item => {

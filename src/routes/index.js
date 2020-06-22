@@ -1,5 +1,5 @@
 //配置内外层路由
-import {Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit,Infos} from '../views/index'
+import {Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit,Infos,NoAuth,selfSetting} from '../views/index'
 
 // 配置与App同层级的外层路由
 export const mainRoutes = [
@@ -15,7 +15,8 @@ export const adminRoutes = [
         component:Dashbord,
         title:'仪表盘',
         Icon:'AreaChartOutlined',
-        isNav:true
+        isNav:true,
+        roles: ['001','002','003']
     },
     // 断路由要求设置exract  以便Switch能区分
     {
@@ -24,27 +25,47 @@ export const adminRoutes = [
         title:'文章列表',
         isNav:true,
         Icon:'OrderedListOutlined',
-        exact: true
+        exact: true,
+        roles: ['001','002']
     },
     {
         pathname:'/admin/article/ArticleEdit/:id',
         component:ArticleEdit,
         title:'文章编辑',
         Icon:'HighlightOutlined',
-        isNav:false
+        isNav:false,
+        roles: ['001']
     },
     {
         pathname:'/admin/Settings',
         component:Settings,
         title:'设置',
         Icon:'SettingFilled',
-        isNav:true
+        isNav:true,
+        roles: ['001']
     },
     {
         pathname:'/admin/infos',
         component:Infos,
         title:'信息中心',
         Icon:'',
-        isNav:false
+        isNav:false,
+        roles: ['001','002','003']
+    },
+    {
+        pathname:'/admin/NoAuth',
+        component:NoAuth,
+        title: '无权限查看',
+        Icon:'',
+        isNav: false,
+        roles: ['001','002','003']
+    },
+    {
+        pathname:'/admin/selfSetting',
+        component:selfSetting,
+        title: '个人设置',
+        Icon:'',
+        isNav: false,
+        roles: ['001','002','003']
     }
 ]

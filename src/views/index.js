@@ -6,7 +6,9 @@ import Notfound from './Notfond/index'
 import ArticleList from './Article/ArtList'
 import ArticleEdit from './Article/Edit.js'
 import Infos from './Infos/infos.js'
+import NoAuth from './NoAuth/index.js'
+import selfSetting from './userSetting/index'
 
 export {
-    Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit,Infos
+    Login,Dashbord,Settings,Notfound,ArticleList,ArticleEdit,Infos,NoAuth,selfSetting
 }
